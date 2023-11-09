@@ -1,56 +1,61 @@
 console.clear();
-const divider = (name = " ") => console.log(`\n-----${name}-----\n`);
+const divider = (name: string = " "): void =>
+  console.log(`\n-----${name}-----\n`);
 
 class Calculator {
-  constructor(PI, E) {
+  public PI: number;
+  public E: number;
+
+  constructor(PI: number, E: number) {
     this.PI = PI;
     this.E = E;
   }
-  requestAnimationFrame(x, y, width) {
+
+  requestAnimationFrame(x: number, y: number, width: number): number {
     return (width * y) / x;
   }
 
-  percentage(x, y) {
+  percentage(x: number, y: number): never | string {
     if (y === 0) {
       throw new Error("Error: Divisor cannot be zero");
     } else {
-      return (x / y) * 100 + "%";
+      return (x / y) * 100 + `%`;
     }
   }
 
-  add(x, y) {
+  add(x: number, y: number): number {
     return x + y;
   }
 
-  subtract(x, y) {
+  subtract(x: number, y: number): number {
     return y - x;
   }
 
-  multiply(x, y) {
+  multiply(x: number, y: number): number {
     return x * y;
   }
 
-  divide(x, y) {
+  divide(x: number, y: number): never | number {
     if (y === 0) {
-      throw new Error("Divisor cannot be zero");
+      throw new Error("Error: Divisor cannot be zero");
     } else {
       return x / y;
     }
   }
 
-  remainder(x, y) {
+  remainder(x: number, y: number): never | number {
     if (y === 0) {
-      throw new Error("Divisor cannot be zero");
+      throw new Error("Error: Divisor cannot be zero");
     } else {
       return x % y;
     }
   }
 
-  elevate(x, y) {
+  elevate(x: number, y: number): number {
     return x ** y;
   }
 
-  sqrt(x) {
+  sqrt(x: number): never | number {
     if (x < 0) {
       throw new Error(
         "Error: Cannot calculate the square root of a negative number"
@@ -60,8 +65,12 @@ class Calculator {
     }
   }
 
-  massConvertor(value, fromUnit, toUnit) {
-    const unitConvertor = {
+  massConvertor(
+    value: number,
+    fromUnit: string,
+    toUnit: string
+  ): never | number {
+    const unitConvertor: Record<string, Record<string, number>> = {
       kilograms: {
         grams: 1000,
         milligrams: 1e6,
@@ -126,7 +135,7 @@ class Calculator {
     return value * multiplier;
   }
 
-  findBmi(kilograms, height) {
+  findBmi(kilograms: number, height: number): string {
     if (kilograms / height ** 2 < 18.5) {
       return (
         "Your BMI is: " + kilograms / height ** 2 + ". You are underweight"
@@ -141,8 +150,12 @@ class Calculator {
     }
   }
 
-  lengthConvertor(value, lengthFrom, lengthTo) {
-    const lengthUnitConvertor = {
+  lengthConvertor(
+    value: number,
+    lengthFrom: string,
+    lengthTo: string
+  ): never | number {
+    const lengthUnitConvertor: Record<string, Record<string, number>> = {
       kilometers: {
         meters: 1000,
         decimeters: 10000,
@@ -184,8 +197,15 @@ class Calculator {
     return value * lengthMultiplier;
   }
 
-  temperatureConvertor(value, tempFrom, tempTo) {
-    const tempUnitsConvertor = {
+  temperatureConvertor(
+    value: number,
+    tempFrom: string,
+    tempTo: string
+  ): never | number {
+    const tempUnitsConvertor: Record<
+      string,
+      Record<string, (input: number) => number>
+    > = {
       celsius: {
         fahrenheit: (celsius) => (celsius * 9) / 5 + 32,
       },
@@ -236,7 +256,7 @@ console.log(calculator.divide(28, 32));
 
 divider("Remainder");
 console.log(calculator.remainder(7, 5));
-// console.log(calculator.remainder(14, 0)); //? -> Will throw an error
+// console.log(calculator.remainder(14, 0)); //? //? -> Will throw an error
 console.log(calculator.remainder(65, 35));
 
 divider("Elevate");
@@ -245,8 +265,8 @@ console.log(calculator.elevate(28, 7));
 console.log(calculator.elevate(17, 6));
 
 divider("sqrt");
-// console.log(calculator.sqrt(-25)); //? -> Will throw an error
 console.log(calculator.sqrt(48));
+// console.log(calculator.sqrt(-25)); //? -> Will throw an error
 console.log(calculator.sqrt(150));
 
 divider("Mass Convertor");
@@ -263,7 +283,7 @@ console.log(calculator.findBmi(90, 1.7));
 divider("Length Convertor");
 console.log(calculator.lengthConvertor(3, "kilometers", "meters"));
 console.log(calculator.lengthConvertor(3, "kilometers", "miles"));
-// console.log(calculator.lengthConvertor(3, "kilometers", "oz"));  //? -> Will throw an error
+// console.log(calculator.lengthConvertor(3, "kilometers", "oz")); //? -> Will throw an error
 
 divider("Temperature Convertor");
 console.log(calculator.temperatureConvertor(30, "celsius", "fahrenheit"));
