@@ -62,9 +62,11 @@ attempting to calculate the square root of a negative number. Errors are thrown 
 
 ## TypeScript Version
 
-A TypeScript version of this calculator project is also available. You can find the TypeScript files in the typescript folder.
-The TypeScript version includes type annotations for better code readability and maintainability.
+- A TypeScript version of this calculator project is also available. You can find the TypeScript files in the typescript folder.
+  The TypeScript version includes type annotations for better code readability and maintainability.
+
+- There is also some notes explaining about interface, types and generics.
 
 **Acknowledgments**
-I would like to express my gratitude to my teachers Jay Radan, Luke Dowling, and Sara Dalal for their continuous support
+I would like to express my gratitude to my teachers Luke Dowling, Jay Radan, and Sara Dalal for their continuous support
 and dedication in teaching JavaScript and TypeScript. Their guidance has been invaluable in the development of this project.
